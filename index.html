@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IdeaSagar.com</title>
+
+      <!-- Include FontAwesome CSS -->
+    <link rel="icon" type="image/x-icon" href="https://cdn.iconscout.com/icon/premium/png-256-thumb/idea-60-172772.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/reponsive.css">
+    <style>
+    
+     
+    </style>
+    <style>
+        /* Responsive css */
+   
+    </style>
+</head>
+<body>
+    <div class="Container" id="C">
+        <header>
+            <nav>
+              <a id="home" href="/index.html"> <i class="fa fa-home" ></i><span class="last-text">home</span>
+            </a>
+
+              <a id="post" href="html/post.html"> <i class="fa fa-plus-circle" ></i><span class="last-text">try post</span></a>
+
+              <a id="details" href="html/details.html"><i class='fas fa-user-circle'></i><span class="last-text">details</span></a>
+
+
+              <span class="last">
+                  <a id="search" href="http://"><i class="fas fa-search"></i> <span class="last-text">search</span>
+                </a>
+                  <a id="logout" href="http://"><i class="fas fa-sign-out-alt"></i> <span class="last-text">logout</span></a>
+              </span>
+            </nav>
+        </header>
+       <div class="B" id="B">
+        <article >
+
+            <div class="post" id="messageDisplay">
+            
+            </div>
+            <hr>
+           
+         
+
+        </article>
+        <aside >
+
+        </aside>
+
+      </div>
+    </div>
+   
+    <script>
+      // Function to display all messages from local storage
+    function displayMessages() {
+      const container=document.getElementById("C");
+        const messageDisplay = document.getElementById("messageDisplay");
+
+        // Retrieve messages from local storage
+        const messages = JSON.parse(localStorage.getItem("messages")) || [];
+
+        // Display messages in reverse order
+        messageDisplay.innerHTML = "<h2>Messages:</h2>";
+        messages.forEach((message, index) => {
+       
+          // Add the message to the display area in a separate box with its unique ID
+          messageDisplay.innerHTML += `<div id="message${index}" style=" border-width: 0;
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+    border-radius: 5px; padding:20px; margin:10px 5px;"><p>${message}</p>  <i class='far fa-comment-alt' style="float:right; position:relative; bottom:12px "></i></div>`;
+   
+    
+  });
+
+  const containerHeight = messages.length * 12; // Adjust the multiplier as needed
+
+  container.style.minHeight = containerHeight + 'vh';
+}
+    // Call the displayMessages function when the page loads
+    window.onload = displayMessages;
+
+    // Listen for changes in local storage and update the display
+    window.addEventListener('storage', displayMessages);
+
+  </script>
+
+</body>
+</html>

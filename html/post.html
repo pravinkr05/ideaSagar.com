@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Editor</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/reponsive.css">
+  <link rel="stylesheet" href="/css/post.css">
+
+  <style>
+   
+  </style>
+</head>
+<body>
+
+    <div class="Container">
+        <a id="backbtn" href="/index.html"><i class="fa fa-arrow-circle-left" ></i></a>
+        <h1>Share Your Message</h1>
+
+        <textarea id="messageInput" placeholder="Write your message here..."></textarea>
+      
+        <button onclick="addMessage()">Post</button>
+      
+        <div id="postedMessages">
+          <!-- Display posted messages here -->
+        </div>
+    </div>
+ 
+    <!-- <script src="/js/script.js"></script> -->
+
+  
+
+<script>
+     // Function to add a message to local storage
+     function addMessage() {
+        const messageInput = document.getElementById("messageInput");
+        const message = messageInput.value;
+
+        if (message.trim() !== "") {
+            // Retrieve existing messages from local storage
+            const messages = JSON.parse(localStorage.getItem("messages")) || [];
+
+            // Add the new message to the beginning of the array
+            messages.unshift(message);
+
+            // Save the updated array back to local storage
+            localStorage.setItem("messages", JSON.stringify(messages));
+
+            // Trigger the storage event to notify other pages
+            window.dispatchEvent(new Event('storage'));
+
+            // Clear the input field
+            messageInput.value = "";
+        }
+    }
+
+</script>
+<!-- <script>
+    function postMessage() {
+      var message = document.getElementById("message").value;
+      if (message.trim() !== "") {
+        var messageElement = document.createElement("p");
+        messageElement.textContent = message;
+        document.getElementById("postedMessages").appendChild(messageElement);
+        // Clear the textarea after posting
+        document.getElementById("message").value = "";
+             
+        window.location.href = "/index.html";
+      }
+    }
+  </script> -->
+
+</body>
+</html>
